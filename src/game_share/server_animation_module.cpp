@@ -1,9 +1,6 @@
 // Ryzom - MMORPG Framework <http://dev.ryzom.com/projects/ryzom/>
 // Copyright (C) 2010  Winch Gate Property Limited
 //
-// This source file has been modified by the following contributors:
-// Copyright (C) 2020  Jan BOON (Kaetemi) <jan.boon@kaetemi.be>
-//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
 // published by the Free Software Foundation, either version 3 of the
@@ -670,12 +667,11 @@ void CAttributeToProperty::setAiStateName(const std::string& prefix)
 	std::string name;
 
 	CObject* tmp=_Object->getAttr("Id");
-	if (!tmp || !tmp->isString())
+	if( !(tmp&&tmp->isString())&&((name = tmp->toString()).length()!=0))
 	{
 		nlwarning("R2Ani: invalide rtData");
 		return;
 	}
-	name = tmp->toString();
 
 	_Primitive->addPropertyByName("name", new CPropertyString(prefix + name));
 

@@ -301,9 +301,9 @@ inline ECharacterTitle getGMTitleFromPriv (const std::string& priv)
 
 
 //----------------------------------------------------------------------
-inline bool isCsrTitle(const std::string& title)
+inline bool isCsrTitle(const ucstring& title)
 {
-	ECharacterTitle titleEnum = toCharacterTitle( title );
+	ECharacterTitle titleEnum = toCharacterTitle( title.toUtf8() );
 	bool bIsCsrTitle = (titleEnum >= SGM && titleEnum <= CM);
 
 	return bIsCsrTitle;

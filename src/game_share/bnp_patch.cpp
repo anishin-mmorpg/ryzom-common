@@ -1,9 +1,6 @@
 // Ryzom - MMORPG Framework <http://dev.ryzom.com/projects/ryzom/>
 // Copyright (C) 2010  Winch Gate Property Limited
 //
-// This source file has been modified by the following contributors:
-// Copyright (C) 2019  Jan BOON (Kaetemi) <jan.boon@kaetemi.be>
-//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
 // published by the Free Software Foundation, either version 3 of the
@@ -77,7 +74,7 @@ bool CBNPFileVersion::setup(const std::string &fileName, uint32 versionNumber)
 	BOMB_IF(!NLMISC::CFile::fileExists(fileName),("File not found: "+fileName).c_str(),return false);
 
 	// generate a hash key for the file and store it in a vector of uint32
-	NLMISC::CHashKey hashKey= NLMISC::getSHA1(fileName);
+	CHashKey hashKey= getSHA1(fileName);
 	nlassert(hashKey.HashKeyString.size()==20);
 	_HashKey.clear();
 	for (uint32 i=0;i<5;++i)
@@ -140,10 +137,10 @@ uint32 CBNPFileVersion::getPatchSize() const
 	return _PatchSize;
 }
 
-NLMISC::CHashKey CBNPFileVersion::getHashKey() const
+CHashKey CBNPFileVersion::getHashKey() const
 {
 	nlassert(_HashKey.size()==5);
-	NLMISC::CHashKey hashKey;
+	CHashKey hashKey;
 	for (uint32 i=0;i<5;++i)
 	{
 		*(uint32*)&hashKey.HashKeyString[4*i]=_HashKey[i];

@@ -1,9 +1,6 @@
 // Ryzom - MMORPG Framework <http://dev.ryzom.com/projects/ryzom/>
 // Copyright (C) 2010  Winch Gate Property Limited
 //
-// This source file has been modified by the following contributors:
-// Copyright (C) 2019  Jan BOON (Kaetemi) <jan.boon@kaetemi.be>
-//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
 // published by the Free Software Foundation, either version 3 of the
@@ -209,6 +206,7 @@ public:
 	virtual void inPlaceCopyTo(CObject &dest) const = 0;
 	virtual void inPlaceCopy(const CObjectString &src);
 	virtual void inPlaceCopy(const CObjectNumber &src);
+	virtual void inPlaceCopy(const CObjectInteger &src);
 	virtual void inPlaceCopy(const CObjectTable &src);
 protected:
 	void		 copyMismatchMsg(const CObject &src);
@@ -289,51 +287,78 @@ class CObjectNumber : public CObject
 
 public:
 	explicit CObjectNumber(double value);
-	explicit CObjectNumber(sint64 value);
 
-	virtual const char *getTypeAsString() const NL_OVERRIDE;
+	virtual const char *getTypeAsString() const;
 
-	virtual bool set(const std::string& key, sint64 value) NL_OVERRIDE;
-	virtual bool set(const std::string& key, double value) NL_OVERRIDE;
-	virtual bool set(const std::string& key, const std::string&value) NL_OVERRIDE;
+	virtual bool set(const std::string& key, double value);
+	virtual bool set(const std::string& key, const std::string&value);
 
-	virtual bool setObject(const std::string& key, CObject* value) NL_OVERRIDE;
+	virtual bool setObject(const std::string& key, CObject* value);
 
-	virtual CObject* clone() const NL_OVERRIDE;
+	virtual CObject* clone() const;
 
-	double getNumberValue() const { return m_IsInteger ? m_Value.Integer : m_Value.Number; }
-	sint64 getIntegerValue() const { return m_IsInteger ? m_Value.Integer : m_Value.Number; }
+	double getValue() const { return _Value; }
 
-	virtual void dump(const std::string prefix = "", uint depth = 0) const NL_OVERRIDE;
+	virtual void dump(const std::string prefix = "", uint depth = 0) const;
 
-	virtual bool equal(const CObject* other) const NL_OVERRIDE;
+	virtual bool equal(const CObject* other) const;
 
 protected:
-	virtual void doSerialize(std::string& out, CSerializeContext& context) const NL_OVERRIDE;
+	virtual void doSerialize(std::string& out, CSerializeContext& context) const;
 
-	virtual bool doIsNumber() const NL_OVERRIDE;
+	virtual bool doIsNumber() const;
 
-	virtual double doToNumber() const NL_OVERRIDE;
+	virtual double doToNumber() const;
 
-	virtual bool doIsInteger() const NL_OVERRIDE;
+	virtual std::string doToString() const;
 
-	virtual sint64 doToInteger() const NL_OVERRIDE;
+	virtual void inPlaceCopyTo(CObject &dest) const;
+	virtual void inPlaceCopy(const CObjectNumber &src);
 
-	virtual std::string doToString() const NL_OVERRIDE;
-
-	virtual void inPlaceCopyTo(CObject &dest) const NL_OVERRIDE;
-	virtual void inPlaceCopy(const CObjectNumber &src) NL_OVERRIDE;
-
-	virtual void visitInternal(IObjectVisitor &visitor) NL_OVERRIDE;
+	virtual void visitInternal(IObjectVisitor &visitor);
 
 private:
-	bool m_IsInteger;
-	union
-	{
-		double Number;
-		sint64 Integer;
-	} m_Value;
+	double _Value;
 
+};
+
+class CObjectInteger : public CObject
+{
+
+public:
+	explicit CObjectInteger(sint64 value);
+
+	virtual const char *getTypeAsString() const;
+
+	virtual bool set(const std::string& key, sint64 value);
+	virtual bool set(const std::string& key, const std::string &value);
+
+	virtual bool setObject(const std::string& key, CObject* value);
+
+	virtual CObject* clone() const;
+
+	sint64 getValue() const { return _Value; }
+
+	virtual void dump(const std::string prefix = "", uint depth = 0) const;
+
+	virtual bool equal(const CObject* other) const;
+
+protected:
+	virtual void doSerialize(std::string& out, CSerializeContext& context) const;
+
+	virtual bool doIsInteger() const;
+
+	virtual sint64 doToInteger() const;
+
+	virtual std::string doToString() const;
+
+	virtual void inPlaceCopyTo(CObject &dest) const;
+	virtual void inPlaceCopy(const CObjectInteger &src);
+
+	virtual void visitInternal(IObjectVisitor &visitor);
+
+private:
+	sint64 _Value;
 };
 
 class CObjectTable: public CObject

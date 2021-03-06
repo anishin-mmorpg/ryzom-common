@@ -1,9 +1,6 @@
 // Ryzom - MMORPG Framework <http://dev.ryzom.com/projects/ryzom/>
 // Copyright (C) 2010  Winch Gate Property Limited
 //
-// This source file has been modified by the following contributors:
-// Copyright (C) 2020  Jan BOON (Kaetemi) <jan.boon@kaetemi.be>
-//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
 // published by the Free Software Foundation, either version 3 of the
@@ -121,7 +118,7 @@ namespace RM_FABER_TYPE
 	}
 
 	/// Client: use the CI18N
-	const std::string& toLocalString( TRMFType e )
+	const ucstring& toLocalString( TRMFType e )
 	{
 		return CI18N::get("mpft" + toString(e));
 	}
@@ -137,7 +134,7 @@ namespace RM_FABER_TYPE
 namespace RM_FAMILY
 {
 	/// Get the Localized UCString
-	const std::string& toLocalString( TRMFamily e )
+	const ucstring& toLocalString( TRMFamily e )
 	{
 		return CI18N::get("mpfam" + toString(e));
 	}
@@ -147,7 +144,7 @@ namespace RM_FAMILY
 namespace RM_GROUP
 {
 	/// Get the Localized UCString
-	const std::string& toLocalString( TRMGroup e )
+	const ucstring& toLocalString( TRMGroup e )
 	{
 		return CI18N::get("mpgroup" + toString(e));
 	}
@@ -157,7 +154,7 @@ namespace RM_GROUP
 namespace RM_FABER_PROPERTY
 {
 	/// Get the Localized UCString
-	const std::string& toLocalString( TRMFProperty e )
+	const ucstring& toLocalString( TRMFProperty e )
 	{
 		return CI18N::get("mpprop" + toString(e));
 	}
@@ -191,7 +188,7 @@ namespace RM_FABER_QUALITY
 	}
 
 	/// Client: use the CI18N
-	const std::string& toLocalString( TFaberQuality e )
+	const ucstring& toLocalString( TFaberQuality e )
 	{
 		return CI18N::get("mpfq" + toString(e));
 	}
@@ -227,7 +224,7 @@ namespace RM_COLOR
 	}
 
 	/// Get the Localized UCString
-	const std::string& toLocalString( sint value )
+	const ucstring& toLocalString( sint value )
 	{
 		return CI18N::get("mpcol" + toString(value));
 	}
@@ -286,7 +283,7 @@ namespace RM_FABER_STAT_TYPE
 		return conversion.toString(stats);
 	}
 
-	const std::string& toLocalString( TRMStatType stats )
+	const ucstring& toLocalString( TRMStatType stats )
 	{
 		// must change en.uxt
 		nlctassert(NumRMStatType == sizeof(stringTable)/sizeof(stringTable[0]));
@@ -666,9 +663,9 @@ namespace RM_FABER_STAT_TYPE
 namespace RM_CLASS_TYPE
 {
 
-const std::string &toLocalString(TRMClassType classType)
+const ucstring &toLocalString(TRMClassType classType)
 {
-	return CI18N::get(toString("uiItemRMClass%d", classType));
+	return CI18N::get(toString("uiItemRMClass%d", classType).c_str());
 }
 
 

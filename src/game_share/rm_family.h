@@ -1,9 +1,6 @@
 // Ryzom - MMORPG Framework <http://dev.ryzom.com/projects/ryzom/>
 // Copyright (C) 2010  Winch Gate Property Limited
 //
-// This source file has been modified by the following contributors:
-// Copyright (C) 2020  Jan BOON (Kaetemi) <jan.boon@kaetemi.be>
-//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
 // published by the Free Software Foundation, either version 3 of the
@@ -88,7 +85,7 @@ namespace RM_FABER_TYPE
 	const std::string &faberTypeToSheetEntry(TRMFType type);
 
 	/// Get the Localized UCString
-	const std::string& toLocalString( TRMFType e );
+	const ucstring& toLocalString( TRMFType e );
 
 	/// For Client Interface, return the define name of the type (eg: "item_part_icon_MpL")
 	std::string toIconDefineString( TRMFType e );
@@ -104,7 +101,7 @@ namespace RM_FAMILY
 	const TRMFamily Unknown = 0;
 
 	/// Get the Localized UCString
-	const std::string& toLocalString( TRMFamily e );
+	const ucstring& toLocalString( TRMFamily e );
 
 	/// Debug string
 	inline std::string toString( TRMFamily e ) { return NLMISC::toString(e); }
@@ -122,7 +119,7 @@ namespace RM_GROUP
 	const TRMGroup Unknown = 0;
 
 	/// Get the Localized UCString
-	const std::string& toLocalString( TRMGroup e );
+	const ucstring& toLocalString( TRMGroup e );
 
 	// Note: the group names are accessible on server by CMP::rmGroupToString()
 
@@ -141,7 +138,7 @@ namespace RM_FABER_PROPERTY
 	const TRMFProperty Unknown = 0;
 
 	/// Get the Localized UCString
-	const std::string& toLocalString( TRMFProperty e );
+	const ucstring& toLocalString( TRMFProperty e );
 
 	/// Debug string
 	inline std::string toString( TRMFProperty e ) { return NLMISC::toString(e); }
@@ -181,7 +178,7 @@ namespace RM_FABER_QUALITY
 	TFaberQuality toFaberQuality( const std::string& str );
 
 	/// Get the Localized UCString
-	const std::string& toLocalString( TFaberQuality e );
+	const ucstring& toLocalString( TFaberQuality e );
 
 }
 
@@ -202,7 +199,7 @@ namespace RM_COLOR
 	const std::string& toString( sint value );
 
 	/// Get the Localized UCString
-	const std::string& toLocalString( sint value );
+	const ucstring& toLocalString( sint value );
 
 };
 
@@ -254,7 +251,7 @@ namespace RM_FABER_STAT_TYPE
 	const std::string& toString( TRMStatType stats );
 
 	/// Get the Localized UCString
-	const std::string& toLocalString( TRMStatType stats );
+	const ucstring& toLocalString( TRMStatType stats );
 
 	/// For each Raw material faber type, does this Stat is relevant?
 	bool	isStatRelevant(RM_FABER_TYPE::TRMFType ft, TRMStatType fs);
@@ -312,7 +309,7 @@ namespace RM_CLASS_TYPE
 	};
 
 	/// Get the Localized UCString
-	const std::string& toLocalString( TRMClassType classType );
+	const ucstring& toLocalString( TRMClassType classType );
 
 	/// return the item class for a given stat energy [0..100]
 	inline TRMClassType getItemClass(uint32 energy)

@@ -54,7 +54,7 @@ struct CCharacterSummary
 	TSessionId Mainland;
 
 	/// name
-	ucstring Name; // TODO: UTF-8 (serial)
+	ucstring Name;
 
 	/// Localisation
 	uint32 Location;

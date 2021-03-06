@@ -1,9 +1,6 @@
 // Ryzom - MMORPG Framework <http://dev.ryzom.com/projects/ryzom/>
 // Copyright (C) 2010  Winch Gate Property Limited
 //
-// This source file has been modified by the following contributors:
-// Copyright (C) 2013  Laszlo KIS-ADAM (dfighter) <dfighter1985@gmail.com>
-//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
 // published by the Free Software Foundation, either version 3 of the
@@ -155,16 +152,6 @@ bool	CGenericXmlMsgHeaderManager::pushNameToStream(const string &msgName, CBitMe
 	bool res = (_Root->select(msgName.c_str(), strm) != NULL);
 
 	if (!res) nlwarning("pushNameToStream failed: Unknown message name '%s'", msgName.c_str());
-
-	return res;
-}
-
-//
-bool	CGenericXmlMsgHeaderManager::pushNameToStream(const char *msgName, CBitMemStream &strm)
-{
-	bool res = (_Root->select(msgName, strm) != NULL);
-
-	if (!res) nlwarning("pushNameToStream failed: Unknown message name '%s'", msgName);
 
 	return res;
 }

@@ -1,9 +1,6 @@
 // Ryzom - MMORPG Framework <http://dev.ryzom.com/projects/ryzom/>
 // Copyright (C) 2010  Winch Gate Property Limited
 //
-// This source file has been modified by the following contributors:
-// Copyright (C) 2012  Jan BOON (Kaetemi) <jan.boon@kaetemi.be>
-//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
 // published by the Free Software Foundation, either version 3 of the
@@ -366,7 +363,7 @@ void CStaticFames::loadStaticFame( const string& filename )
 		// 1st, build the index table
 		for (uint i=1; i<ws.size(); ++i)
 		{
-			string name = toLowerAscii(ws.getData(i, 0).toString());
+			string name = toLower(ws.getData(i, 0).toString());
 			if (name.empty())
 				break;
 			_FactionNameIndex.insert(make_pair(CStringMapper::map(name), i-1));
@@ -382,7 +379,7 @@ void CStaticFames::loadStaticFame( const string& filename )
 		// 2nd check the table structure
 		for (uint i=2; i<ws.ColCount; ++i)
 		{
-			string name = toLowerAscii(ws.getData(0, i).toString());
+			string name = toLower(ws.getData(0, i).toString());
 
 			if (name.empty())
 			{
@@ -613,7 +610,7 @@ uint	CStaticFames::getFactionIndex(NLMISC::TStringId factionName)
 //----------------------------------------------------------------------------
 uint	CStaticFames::getFactionIndex(const std::string &factionName)
 {
-	return getFactionIndex(CStringMapper::map(toLowerAscii(factionName)));
+	return getFactionIndex(CStringMapper::map(toLower(factionName)));
 }
 
 //----------------------------------------------------------------------------
@@ -671,7 +668,7 @@ sint32 CStaticFames::getStaticFame(NLMISC::TStringId faction1, NLMISC::TStringId
 //----------------------------------------------------------------------------
 sint32	CStaticFames::getStaticFame(const std::string &faction1, const std::string &faction2)
 {
-	return getStaticFame(CStringMapper::map(toLowerAscii(faction1)), CStringMapper::map(toLowerAscii(faction2)));
+	return getStaticFame(CStringMapper::map(toLower(faction1)), CStringMapper::map(toLower(faction2)));
 }
 
 //----------------------------------------------------------------------------

@@ -1,9 +1,6 @@
 // Ryzom - MMORPG Framework <http://dev.ryzom.com/projects/ryzom/>
 // Copyright (C) 2010  Winch Gate Property Limited
 //
-// This source file has been modified by the following contributors:
-// Copyright (C) 2020  Jan BOON (Kaetemi) <jan.boon@kaetemi.be>
-//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
 // published by the Free Software Foundation, either version 3 of the
@@ -76,7 +73,7 @@ ERole toRoleId( const std::string& Role )
 }
 
 // Return the Translated name of the Job
-const std::string &roleToUCString(ERole r)
+const ucstring &roleToUCString (ERole r)
 {
 	return NLMISC::CI18N::get( toString( r ) );
 }

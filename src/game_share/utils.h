@@ -1,10 +1,6 @@
 // Ryzom - MMORPG Framework <http://dev.ryzom.com/projects/ryzom/>
 // Copyright (C) 2010  Winch Gate Property Limited
 //
-// This source file has been modified by the following contributors:
-// Copyright (C) 2010  Matt RAYKOWSKI (sfb) <matt.raykowski@gmail.com>
-// Copyright (C) 2020  Jan BOON (Kaetemi) <jan.boon@kaetemi.be>
-//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
 // published by the Free Software Foundation, either version 3 of the
@@ -44,11 +40,7 @@ inline std::string capitalize(const std::string & s)
 	if ( s.empty() )
 		return s;
 
-	std::string res;
-	res.reserve(4);
-	ptrdiff_t i = 0;
-	NLMISC::appendToUpper(res, s, i);
-	return res + NLMISC::toLower(s.substr(i));
+	return NLMISC::toUpper( s.substr(0,1) ) + NLMISC::toLower( s.substr(1,std::string::npos) );
 }
 
 inline ucstring capitalize(const ucstring & s)
@@ -56,8 +48,7 @@ inline ucstring capitalize(const ucstring & s)
 	if ( s.empty() )
 		return s;
 
-	// return NLMISC::toUpper( s.substr(0,1) ) + NLMISC::toLower( s.substr(1,std::string::npos) );
-	return ucstring::makeFromUtf8(capitalize(s.toUtf8()));
+	return NLMISC::toUpper( s.substr(0,1) ) + NLMISC::toLower( s.substr(1,std::string::npos) );
 }
 
 
@@ -128,8 +119,8 @@ inline ucstring capitalize(const ucstring & s)
 #define GIVEUP_IF(condition,msg,action)		if (!(condition));else GIVEUP(msg,action)
 #define WARN_IF(condition,msg)				if (!(condition));else WARN(msg)
 #define DROP_IF(condition,msg,action)		if (!(condition));else DROP(msg,action)
-#define BOMB_IF(condition,msg,action)		if (!(condition));else BOMB(msg,action); do { nlassume(condition); } while (0)
-#define STOP_IF(condition,msg)				if (!(condition));else STOP(msg); do { nlassume(condition); } while (0)
+#define BOMB_IF(condition,msg,action)		if (!(condition));else BOMB(msg,action)
+#define STOP_IF(condition,msg)				if (!(condition));else STOP(msg)
 
 // testing for variable value changes
 #define ON_CHANGE(type,var,code)\
